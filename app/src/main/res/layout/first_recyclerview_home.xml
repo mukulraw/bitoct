@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/Background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        android:weightSum="3">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/txtfirsthomerecycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text=""
+
+                android:layout_weight="1"
+                android:gravity="right"
+                android:textSize="16sp"
+                android:background="@color/Background"/>
+
+
+            <TextView
+                android:id="@+id/txtfirsthomerecyclermarket"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text=""
+                android:padding="3dp"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:textSize="12sp"
+
+                android:textColor="@color/TabTextBarbrightBlue"/>
+        </LinearLayout>
+
+
+
+        <TextView
+            android:id="@+id/txtsecondhomerecycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text=""
+            android:padding="3dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:background="@color/Background"
+            android:textColor="@color/BlackNormal"/>
+
+        <TextView
+            android:id="@+id/txtthirdhomerecycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text=""
+            android:padding="3dp"
+            android:textSize="16sp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@color/Background"/>
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/BlackLight">
+
+    </View>
+
+
+</android.support.constraint.ConstraintLayout>

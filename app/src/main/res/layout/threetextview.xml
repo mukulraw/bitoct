@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/DarkBlueStrip">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/DarkBlueStrip"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+
+        <TextView
+            android:id="@+id/txtwhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text=""
+            android:textSize="10sp"
+            android:textColor="@color/White"
+            android:padding="3dp"
+            android:layout_marginTop="-4dip"
+            android:layout_marginBottom="-4dip"/>
+
+        <TextView
+            android:id="@+id/txtpink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text=""
+            android:textSize="10sp"
+            android:textColor="@color/Pink"
+            android:padding="3dp"
+            android:layout_marginTop="-4dip"
+            android:layout_marginBottom="-4dip"/>
+
+        <TextView
+            android:id="@+id/txtgreen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text=""
+            android:textSize="10sp"
+            android:textColor="@color/Green"
+            android:padding="3dp"
+            android:layout_marginTop="-4dip"
+            android:layout_marginBottom="-4dip"/>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

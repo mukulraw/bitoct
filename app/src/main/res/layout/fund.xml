@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        android:weightSum="2">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/funds"
+            android:textColor="@color/TabTextBarbrightBlue"
+            android:layout_weight="0.3"
+            android:gravity="center"
+            android:padding="3dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/history"
+            android:textColor="@color/TabTextBarbrightBlue"
+            android:layout_weight="1.7"
+            android:gravity="center"
+            android:padding="3dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:layout_below="@+id/linearLayout3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+        app:layout_constraintVertical_bias="0.0"
+        android:background="@color/Secondndstrip"
+        android:weightSum="2">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1.2">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/balance"
+                android:textColor="@color/TabTextBarbrightBlue"
+                android:padding="3dp"
+                android:gravity="center"
+                android:layout_marginTop="5dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/TabTextBarbrightBlue"
+                android:layout_alignParentBottom="true">
+            </View>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="0.8"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/txtdepositefund"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/deposit"
+                android:textColor="@color/White"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:padding="3dp"
+                android:layout_weight="1"
+                android:layout_marginTop="5dp"
+                />
+
+            <TextView
+                android:id="@+id/txtwithdrawalfund"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/Background"
+                android:text="@string/withdrawal"
+                android:drawableLeft="@drawable/downloadfromcloud"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:padding="3dp"
+                android:layout_weight="1"
+                android:layout_marginTop="5dp"
+                />
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="8dp"
+        android:fillViewport="true"
+        android:layout_below="@+id/linearLayout4">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="vertical"
+                android:background="@color/Secondndstrip"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/estimated_value_btc"
+                    android:textColor="@color/White"
+                    android:padding="3dp"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="10dp"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:orientation="horizontal"
+                    android:background="@color/Secondndstrip"
+                   >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/_0_0000000_btc"
+                        android:textColor="@color/White"
+                        android:padding="3dp"
+                       android:gravity="right"
+                        android:layout_marginLeft="10dp"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/Background"
+                        android:text="$0.00"
+                        android:textSize="8sp"
+                        android:padding="3dp"
+                       android:gravity="bottom"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/all_balance"
+                android:paddingLeft="10dp"
+                android:textColor="@color/TabTextBarbrightBlue"
+                android:background="@color/ThirdrdStrip"/>
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerviewfund"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
+        </LinearLayout>
+
+        </android.support.v4.widget.NestedScrollView>
+
+
+
+
+</RelativeLayout>

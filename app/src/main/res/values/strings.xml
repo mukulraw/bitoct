@@ -1,0 +1,59 @@
+<resources>
+    <string name="app_name">Bit oct</string>
+    <string name="title_home">Home</string>
+    <string name="title_market">Market</string>
+    <string name="title_trade">Trade</string>
+    <string name="title_fund">Fund</string>
+    <string name="title_account">Account</string>
+    <string name="UserName">Username</string>
+    <string name="Password">Password</string>
+    <string name="Hint_username">Enter Username</string>
+    <string name="Hint_password">Enter password</string>
+    <string name="btn_login">LOGIN</string>
+    <string name="forgot_pwd">Forgot Password?</string>
+    <string name="do_you_have_account">Don\'t have an account?</string>
+    <string name="register">Register</string>
+    <string name="email">Email</string>
+    <string name="Hint_email">Enter email</string>
+    <string name="i_agree_with">I agree with</string>
+    <string name="terms_amp_condition"><![CDATA[Terms & Condition]]></string>
+    <string name="login">Login</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="withdrawal">Withdrawal</string>
+    <string name="deposit">Deposit</string>
+    <string name="support">Support</string>
+    <string name="btc_24h_volute_top">BTC 24h Volute Top</string>
+    <string name="pair">Pair</string>
+    <string name="last_price">Last Price</string>
+    <string name="volume_btc">Volume Btc</string>
+    <string name="_24_chg">24 Chg%</string>
+    <string name="pair_vol">Pair/Vol</string>
+    <string name="please_do_not_disclose_sms_and_google_authentication_codes_to_anyone_including_bitoct_customer_support">Please do not disclose SMS and Google. Authentication codes to anyone, including Bitoct customer support</string>
+    <string name="security">Security</string>
+    <string name="logout">Logout</string>
+    <string name="change_password">Change Password</string>
+    <string name="google_authenticator">Google Authenticator</string>
+    <string name="old_password">Old Password</string>
+    <string name="enter_old_password"><font size="14">Enter old password</font></string>
+    <string name="enter_new_password"><font size="14">Enter new password</font></string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="for_security_purpose_no_withddrawals_are_permitted_for_24_hours_after_modification_of_security_methods"><font size="14">*For security purpose no withddrawals are permitted for 24 hours after modification of security methods</font></string>
+    <string name="enter_new_passeord_again"><font size="14">Enter new passeord again</font></string>
+    <string name="new_password">New Password</string>
+    <string name="funds">Funds</string>
+    <string name="history">History</string>
+    <string name="balance">Balance</string>
+    <string name="euivalent_0_06">Euivalent $0.06</string>
+    <string name="estimated_value_btc">Estimated Value(BTC)</string>
+    <string name="_0_0000000_btc">0.0000000 BTC</string>
+    <string name="all_balance">All Balance</string>
+    <string name="copy_address">Copy Address</string>
+    <string name="show_qr_code">Show QR Code</string>
+    <string name="your_address">Your Address</string>
+    <string name="pin_code">Pin Code</string>
+    <string name="available_balance">Available Balance</string>
+    <string name="withdraw_amount">Withdraw Amount</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

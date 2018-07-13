@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#222</color>
+    <color name="colorPrimaryDark">#222</color>
+    <color name="colorAccent">#0387c7</color>
+    <color name="BlackDark">#222</color>
+    <color name="BlackNormal">#444</color>
+    <color name="BlackLight">#777</color>
+    <color name="BlackMoreLight">#999</color>
+    <color name="Pink">#eb0070</color>
+    <color name="Green">#73a414</color>
+    <color name="TableShadowChanges">#e0e4e7</color>
+    <color name="TabTextBarbrightBlue">#0387c7</color>
+    <color name="LightBlue">#6c86ab</color>
+    <color name="DarkBlueStrip">#000e1b</color>
+    <color name="Secondndstrip">#121e2a</color>
+    <color name="ThirdrdStrip">#253141</color>
+    <color name="Background">#e0e4e7</color>
+    <color name="White">#FFF</color>
+    <color name="Bluetext">#0c308b</color>
+    <color name="BluetextLight">#FF09479E</color>
+    <color name="BluetextDark">#FF043374</color>
+    <color name="Yellow">#facd03</color>
+</resources>
+
+
+
+
+

@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.swipe_one">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@color/ThirdrdStrip"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <Spinner
+                android:id="@+id/order"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.1"
+                >
+
+            </Spinner>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.9"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Price(BTC)"
+                    android:textColor="@color/BlackNormal"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Amount(STORM)"
+                    android:textColor="@color/BlackNormal"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:weightSum="2"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/lledt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="3">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:layout_weight="1.3"
+                                android:orientation="horizontal"
+                                android:padding="5dp">
+
+                                <View
+                                    android:layout_width="20dp"
+                                    android:layout_height="2dp"
+                                    android:layout_marginTop="4dp"
+                                    android:background="@color/Background">
+
+                                </View>
+                            </LinearLayout>
+
+
+                            <EditText
+                                android:id="@+id/txtbuyprice"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.4"
+                                android:background="@drawable/textview_border"
+                                android:gravity="center"
+                                android:text=""
+                                android:textColor="@color/Background" />
+
+
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="10dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_marginTop="4dp"
+                                android:layout_weight="1.3"
+                                android:background="@drawable/ic_add_black_24dp"
+                                android:padding="5dp" />
+
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:visibility="gone"
+                            android:id="@+id/txtmarketorder"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Market Price"
+                            android:textColor="@color/Background" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/euivalent_0_06"
+                            android:textColor="@color/Background" />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:orientation="horizontal"
+                            android:weightSum="3">
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:layout_weight="1.3"
+                                android:orientation="horizontal"
+                                android:padding="5dp">
+
+                                <View
+                                    android:layout_width="20dp"
+                                    android:layout_height="2dp"
+                                    android:layout_marginTop="4dp"
+                                    android:background="@color/Background">
+
+                                </View>
+                            </LinearLayout>
+
+
+                            <EditText
+                                android:id="@+id/txtinputcoin"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.4"
+                                android:background="@drawable/textview_border"
+                                android:gravity="center"
+                                android:inputType="number"
+                                android:textColor="@color/Background" />
+
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="10dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_marginTop="4dp"
+                                android:layout_weight="1.3"
+                                android:background="@drawable/ic_add_black_24dp"
+                                android:padding="5dp" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal"
+                            android:padding="3dp"
+                            android:weightSum="4">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="25%"
+                                android:textColor="@color/BlackLight" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="50%"
+                                android:textColor="@color/BlackLight" />
+
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="75%"
+                                android:textColor="@color/BlackLight" />
+
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="100%"
+                                android:textColor="@color/BlackLight" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/calculatebalance"
+                            android:layout_width="match_parent"
+                            android:layout_height="24dp"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text=""
+                            android:textColor="@color/White"
+                            android:background="@drawable/textview_border" />
+                        <TextView
+                            android:visibility="gone"
+                            android:id="@+id/calculatebalance1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text=""
+                            android:textColor="@color/White"
+                             />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:background="@color/Secondndstrip"
+                            android:orientation="horizontal"
+                            android:weightSum="2">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:layout_weight="1.4"
+                                android:padding="3dp"
+                                android:text="Avbl"
+                                android:textColor="@color/BlackLight" />
+
+                            <TextView
+                                android:id="@+id/txtavabilebalance"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="0.6"
+                                android:gravity="right"
+                                android:padding="3dp"
+                                android:text=""
+                                android:textColor="@color/Background" />
+
+
+                        </LinearLayout>
+
+                        <Button
+                            android:id="@+id/btnbuy"
+                            android:layout_width="match_parent"
+                            android:layout_height="28dp"
+                            android:background="@color/Green"
+                            android:text="BUY"
+                            android:layout_marginTop="10dp"
+                            android:layout_gravity="center"
+                            android:textColor="@color/Background"
+                            android:layout_marginBottom="20dp"/>
+
+                        <!--<com.jjoe64.graphview.GraphView-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="240dp"-->
+
+                            <!--android:id="@+id/graph" />-->
+                        <com.jjoe64.graphview.GraphView
+                            android:layout_width="match_parent"
+                            android:layout_height="240dp"
+
+                            android:id="@+id/graph" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:background="@color/colorAccent"
+                        android:orientation="vertical">
+
+                    </LinearLayout>
+
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:weightSum="2"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_weight="1">
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/recyclersellorder"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text=""
+                            android:textColor="@color/Pink"
+                            android:layout_marginTop="5dp"/>
+
+                    </LinearLayout>
+
+
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:background="@color/BlackDark"
+                        android:orientation="vertical">
+
+
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/recyclerviewbuyorder"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/colorAccent">
+
+                </Spinner>
+
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/colorAccent">
+
+                </Spinner>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/White">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Market Trades"
+                    android:layout_marginLeft="3dp"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+
+
+
+    </LinearLayout>
+
+</FrameLayout>
