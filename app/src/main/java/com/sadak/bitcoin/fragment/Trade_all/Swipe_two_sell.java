@@ -17,12 +17,14 @@ import com.sadak.bitcoin.VerticalViewPager;
 import com.sadak.bitcoin.fragment.swipe_one;
 import com.sadak.bitcoin.fragment.swipe_two;
 
+import me.kaelaela.verticalviewpager.transforms.ZoomOutTransformer;
+
 public class Swipe_two_sell extends Fragment {
     VerticalViewPager verticalViewPager;
     static final int NUMBER_OF_PAGES = 2;
 
     MyAdapter mAdapter;
-    VerticalViewPager mPager;
+    com.prabhat1707.verticalpager.VerticalViewPager mPager;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Nullable
@@ -32,7 +34,7 @@ public class Swipe_two_sell extends Fragment {
 
         mAdapter = new MyAdapter(getActivity().getSupportFragmentManager());
         mPager = v.findViewById(R.id.viewpagersell);
-
+        mPager.setPageTransformer(false , new ZoomOutTransformer());
         mPager.setAdapter(mAdapter);
 
         return v;

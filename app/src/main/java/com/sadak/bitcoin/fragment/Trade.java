@@ -39,7 +39,7 @@ public class Trade extends Fragment {
         viewPager = (ViewPager) v.findViewById(R.id.viewpagertrade);
         orderhistory=(TextView)v.findViewById(R.id.order_history);
         markettext = v.findViewById(R.id.markettext);
-        viewPager.setAdapter(new Trade_adapter(getFragmentManager()));
+        viewPager.setAdapter(new Trade_adapter((getChildFragmentManager())));
         tabLayout.setupWithViewPager(viewPager);
 
         sptodo = getContext().getSharedPreferences("Toopen", Context.MODE_PRIVATE);

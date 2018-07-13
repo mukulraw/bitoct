@@ -7,10 +7,9 @@
     android:background="@color/BlackDark">
 
 
-    <com.sadak.bitcoin.VerticalViewPager
+    <com.prabhat1707.verticalpager.VerticalViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        app:swipe_orientation="vertical"/>
+         />
 </RelativeLayout>

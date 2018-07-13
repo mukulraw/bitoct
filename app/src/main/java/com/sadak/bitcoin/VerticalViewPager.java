@@ -83,9 +83,9 @@ public class VerticalViewPager extends ViewPager {
                 final float xDiff = Math.abs(x - mLastMotionX);
                 final float yDiff = Math.abs(y - mLastMotionY);
                 if (!mHorizontalDrag && !mVerticalDrag) {
-                    if (xDiff > mTouchSlop && xDiff > yDiff) { // Swiping left and right
+                    if (yDiff > mTouchSlop && yDiff > xDiff) { // Swiping left and right
                         mHorizontalDrag = true;
-                    } else if (yDiff > mTouchSlop && yDiff > xDiff) { //Swiping up and down
+                    } else if (xDiff > mTouchSlop && xDiff > yDiff) { //Swiping up and down
                         mVerticalDrag = true;
                     }
                 }

@@ -119,7 +119,7 @@ public class MarketGraph extends AppCompatActivity {
 
                 String history = millis.get(i);
                 final ValueLineSeries series = new ValueLineSeries();
-                series.setColor(0xFF28B463);
+                series.setColor(0xFF196981);
 
                 final Retrofit retrofit = new Retrofit.Builder()
                         .baseUrl("https://api.bitoct.com/")
@@ -137,6 +137,10 @@ public class MarketGraph extends AppCompatActivity {
                     public void onResponse(Call<lineChartBean> call, Response<lineChartBean> response) {
 
                         try {
+
+                            valueLineChart.clearChart();
+
+
                             for (int i = 0; i < response.body().getData().size(); i++) {
 
                                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss a");
@@ -217,6 +221,9 @@ public class MarketGraph extends AppCompatActivity {
 
 
                         try {
+
+                            barChart.clearChart();
+
                             for (int i = 0; i < response.body().getData().size(); i++) {
                                 String tt = response.body().getData().get(i).getTradetype();
                                 //Log.d("asdasd", tt);

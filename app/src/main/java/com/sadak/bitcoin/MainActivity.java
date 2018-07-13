@@ -21,12 +21,12 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
     android.support.v4.app.FragmentManager fragmentManager;
-    FragmentTransaction ftHome,ftMarket,ftTrade,ftFund,ftAccount;
+    FragmentTransaction ftHome, ftMarket, ftTrade, ftFund, ftAccount;
     Home h = new Home();
     Trade t = new Trade();
-    SharedPreferences sptodo,sharedPreferencesMarketid;
-    String marketid,todo;
-    public static String market_name =  "BSS/BTC";
+    SharedPreferences sptodo, sharedPreferencesMarketid;
+    String marketid, todo;
+    public static String market_name = "BSS/BTC";
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -35,45 +35,51 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                   // mTextMessage.setText(R.string.title_home);
+
+                    Home hh = new Home();
+                    // mTextMessage.setText(R.string.title_home);
                     ftHome = fragmentManager.beginTransaction();
-                    ftHome.replace(R.id.linearLayout,h);
+                    ftHome.replace(R.id.linearLayout, hh);
                     ftHome.commit();
-                    return true;
+
+                break;
                 case R.id.navigation_market:
-                   // mTextMessage.setText(R.string.title_dashboard);
-                    sptodo = getSharedPreferences("Toopen",MODE_PRIVATE);
+                    // mTextMessage.setText(R.string.title_dashboard);
+                    sptodo = getSharedPreferences("Toopen", MODE_PRIVATE);
                     SharedPreferences.Editor editor = sptodo.edit();
                     editor.putString("todo", "Market");
                     editor.commit();
                     Bundle bundle = new Bundle();
                     Market m = new Market();
-                   ftMarket = fragmentManager.beginTransaction();
-                   ftMarket.replace(R.id.linearLayout,m);
-                   ftMarket.commit();
-                    return true;
+                    ftMarket = fragmentManager.beginTransaction();
+                    ftMarket.replace(R.id.linearLayout, m);
+                    ftMarket.commit();
+
+                break;
                 case R.id.navigation_trade:
 
+                    Trade tdd = new Trade();
                     ftTrade = fragmentManager.beginTransaction();
-                    ftTrade.replace(R.id.linearLayout,t);
+                    ftTrade.replace(R.id.linearLayout, tdd);
                     ftTrade.commit();
-                    return true;
 
+                break;
                 case R.id.navigation_fund:
                     Fund f = new Fund();
                     ftFund = fragmentManager.beginTransaction();
-                    ftFund.replace(R.id.linearLayout,f);
+                    ftFund.replace(R.id.linearLayout, f);
                     ftFund.commit();
-                    return true;
 
+                break;
                 case R.id.navigation_account:
                     Account account = new Account();
                     ftAccount = fragmentManager.beginTransaction();
-                    ftAccount.replace(R.id.linearLayout,account);
+                    ftAccount.replace(R.id.linearLayout, account);
                     ftAccount.commit();
-                    return true;
+
+                break;
             }
-            return false;
+            return true;
         }
     };
 
@@ -86,9 +92,9 @@ public class MainActivity extends AppCompatActivity {
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-       BottomNavigationViewHelper.disableShiftMode(navigation);
+        BottomNavigationViewHelper.disableShiftMode(navigation);
         ftHome = fragmentManager.beginTransaction();
-        ftHome.add(R.id.linearLayout,h);
+        ftHome.add(R.id.linearLayout, h);
         ftHome.commit();
 
     }
@@ -96,12 +102,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        sptodo = getSharedPreferences("Toopen",MODE_PRIVATE);
-        todo = sptodo.getString("todo","");
-        if (todo.equals("Trade"))
-        {
+        sptodo = getSharedPreferences("Toopen", MODE_PRIVATE);
+        todo = sptodo.getString("todo", "");
+        if (todo.equals("Trade")) {
             ftTrade = fragmentManager.beginTransaction();
-            ftTrade.replace(R.id.linearLayout,t);
+            ftTrade.replace(R.id.linearLayout, t);
             ftTrade.commit();
 
         }

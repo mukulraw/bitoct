@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.animation.Animation;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ScrollView;
@@ -39,6 +40,7 @@ import com.sadak.bitcoin.model.Sellorder.Example;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.kaelaela.verticalviewpager.transforms.ZoomOutTransformer;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -48,7 +50,7 @@ public class Trade_buy_sell extends Fragment {
     static final int NUMBER_OF_PAGES = 2;
 
     MyAdapter mAdapter;
-    VerticalViewPager mPager;
+    com.prabhat1707.verticalpager.VerticalViewPager mPager;
 
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -59,6 +61,9 @@ public class Trade_buy_sell extends Fragment {
 
         mAdapter = new MyAdapter(getActivity().getSupportFragmentManager());
         mPager = v.findViewById(R.id.viewpager);
+        mPager.setPageTransformer(false , new ZoomOutTransformer());
+        mPager.setAnimation(null);
+
        // Toast.makeText(getContext(), "qwerty", Toast.LENGTH_SHORT).show();
         mPager.setAdapter(mAdapter);
 
