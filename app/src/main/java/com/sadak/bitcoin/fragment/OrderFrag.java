@@ -35,32 +35,42 @@ public class OrderFrag extends Fragment {
     SharedPreferences sharedPreferences;
     String member_id;
     RecyclerView recyclerView;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.order_history, container, false);
-        recyclerView=(RecyclerView)v.findViewById(R.id.order_history);
-        sharedPreferences = getContext().getSharedPreferences("Bitoct_user",Context.MODE_PRIVATE);
-        member_id = sharedPreferences.getString("user_id","");
+        recyclerView = (RecyclerView) v.findViewById(R.id.order_history);
+        sharedPreferences = getContext().getSharedPreferences("Bitoct_user", Context.MODE_PRIVATE);
+        member_id = sharedPreferences.getString("user_id", "");
 
-        setdata();
+
         return v;
     }
 
-    public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder>
-    {
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        setdata();
+
+    }
+
+    public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> {
         public OrderAdapter(List<com.sadak.bitcoin.model.OrderModel.Datum> arrayList, Context context) {
             this.arrayList = arrayList;
             this.context = context;
         }
 
-       List<com.sadak.bitcoin.model.OrderModel.Datum> arrayList = new ArrayList<>();
-         Context context;
+        List<com.sadak.bitcoin.model.OrderModel.Datum> arrayList = new ArrayList<>();
+        Context context;
+
         @Override
         public OrderAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater inflater;
             inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View v = inflater.inflate(R.layout.order_item,parent,false);
+            View v = inflater.inflate(R.layout.order_item, parent, false);
 
             return new OrderAdapter.ViewHolder(v);
         }
@@ -78,23 +88,22 @@ public class OrderFrag extends Fragment {
                 @Override
                 public void onClick(View view) {
 
-                    String url = "api/bitoct/cancelOrder?orderid="+datum.getTickerid();
+                    String url = "api/bitoct/cancelOrder?orderid=" + datum.getTickerid();
                     Apidata apidata = RetrofitInstance.getRetrofitInstance().create(Apidata.class);
                     Call<com.sadak.bitcoin.model.Cancel.Profile> call = apidata.cancleOrder(url);
-                   call.enqueue(new Callback<com.sadak.bitcoin.model.Cancel.Profile>() {
-                       @Override
-                       public void onResponse(Call<com.sadak.bitcoin.model.Cancel.Profile> call, Response<com.sadak.bitcoin.model.Cancel.Profile> response) {
-                           if(response.body().getStatus().equals("Succeed"))
-                           {
-                               setdata();
-                           }
-                       }
+                    call.enqueue(new Callback<com.sadak.bitcoin.model.Cancel.Profile>() {
+                        @Override
+                        public void onResponse(Call<com.sadak.bitcoin.model.Cancel.Profile> call, Response<com.sadak.bitcoin.model.Cancel.Profile> response) {
+                            if (response.body().getStatus().equals("Succeed")) {
+                                setdata();
+                            }
+                        }
 
-                       @Override
-                       public void onFailure(Call<com.sadak.bitcoin.model.Cancel.Profile> call, Throwable t) {
+                        @Override
+                        public void onFailure(Call<com.sadak.bitcoin.model.Cancel.Profile> call, Throwable t) {
 
-                       }
-                   });
+                        }
+                    });
 
                 }
             });
@@ -103,39 +112,38 @@ public class OrderFrag extends Fragment {
 
         @Override
         public int getItemCount() {
-            return arrayList==null?0:arrayList.size();
+            return arrayList == null ? 0 : arrayList.size();
         }
 
         public class ViewHolder extends RecyclerView.ViewHolder {
-            TextView name,date,time,amount,price,cancle;
+            TextView name, date, time, amount, price, cancle;
+
             public ViewHolder(View itemView) {
                 super(itemView);
-                name=(TextView)itemView.findViewById(R.id.market);
-                date=(TextView)itemView.findViewById(R.id.date);
-                time=(TextView)itemView.findViewById(R.id.time);
-                amount=(TextView)itemView.findViewById(R.id.amount);
-                price=(TextView)itemView.findViewById(R.id.price);
-                cancle=(TextView)itemView.findViewById(R.id.cancel);
+                name = (TextView) itemView.findViewById(R.id.market);
+                date = (TextView) itemView.findViewById(R.id.date);
+                time = (TextView) itemView.findViewById(R.id.time);
+                amount = (TextView) itemView.findViewById(R.id.amount);
+                price = (TextView) itemView.findViewById(R.id.price);
+                cancle = (TextView) itemView.findViewById(R.id.cancel);
             }
         }
     }
-    public void setdata()
-    {
+
+    public void setdata() {
 
         //Toast.makeText(getActivity(), "order"+member_id, Toast.LENGTH_LONG).show();
-        String url ="https://api.bitoct.com/api/bitoct/getOpenHistory?MemberId="+member_id;
+        String url = "https://api.bitoct.com/api/bitoct/getOpenHistory?MemberId=" + member_id;
         Apidata apidata = RetrofitInstance.getRetrofitInstance().create(Apidata.class);
         Call<com.sadak.bitcoin.model.OrderModel.Profile> call = apidata.getdata(url);
         call.enqueue(new Callback<com.sadak.bitcoin.model.OrderModel.Profile>() {
             @Override
             public void onResponse(Call<com.sadak.bitcoin.model.OrderModel.Profile> call, Response<com.sadak.bitcoin.model.OrderModel.Profile> response) {
 //                Log.e(">>>>",""+response.body().getStatus());
-                recyclerView.setAdapter(new OrderAdapter(response.body().getData(),getContext()));
+                recyclerView.setAdapter(new OrderAdapter(response.body().getData(), getContext()));
                 recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-                }
-
-
+            }
 
 
             @Override

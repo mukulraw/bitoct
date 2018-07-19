@@ -1,11 +1,12 @@
 package com.sadak.bitcoin.fragment;
 
-import android.app.Fragment;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -42,12 +43,12 @@ import retrofit2.Response;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class Home extends android.support.v4.app.Fragment{
+public class Home extends Fragment {
 
-    RecyclerView threetextrecyclerview,pairrecyclerview;
+    RecyclerView threetextrecyclerview, pairrecyclerview;
     LinearLayoutManager linearLayoutManagerthreetext;
-    TextView txtsupport,txtdeposite,txtwithdrawal;
-    ViewPager viewPager,vpgainerloser;
+    TextView txtsupport, txtdeposite, txtwithdrawal;
+    ViewPager viewPager, vpgainerloser;
     TabLayout tablayout;
     public static List<com.sadak.bitcoin.model.firstRecyclerView.Datum> list1 = new ArrayList<>();
     ArrayList<String> img = new ArrayList<>();
@@ -60,8 +61,7 @@ public class Home extends android.support.v4.app.Fragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.activity_home,container,false);
-
+        View v = inflater.inflate(R.layout.activity_home, container, false);
 
 
         viewPager = (ViewPager) v.findViewById(R.id.viewpager1);
@@ -73,76 +73,6 @@ public class Home extends android.support.v4.app.Fragment{
         txtdeposite = (TextView) v.findViewById(R.id.txtdeposite);
         txtwithdrawal = (TextView) v.findViewById(R.id.txtwithdrawal);
 
-        Apidata apidata = RetrofitInstance.getRetrofitInstance().create(Apidata.class);
-        Call<Profile> call = apidata.getViewPagerImage();
-        call.enqueue(new Callback<Profile>() {
-            @Override
-            public void onResponse(Call<Profile> call, Response<Profile> response) {
-
-
-                List<Datum> list = new ArrayList<>();
-                list= response.body().getData();
-
-               for (int i = 0;i<list.size();i++ )
-               {
-                    img.add(list.get(i).getThemePics());
-               }
-
-                //Log.e("img",""+img);
-                viewPager.setAdapter(new setFirstImage(getActivity(),img));
-
-            }
-
-            @Override
-            public void onFailure(Call<Profile> call, Throwable t) {
-
-            }
-        });
-
-        Apidata apidata11 = RetrofitInstance.getRetrofitInstance().create(Apidata.class);
-        Call<com.sadak.bitcoin.model.threetextview.Profile> call1 = apidata.gettextViewdata();
-        call1.enqueue(new Callback<com.sadak.bitcoin.model.threetextview.Profile>() {
-            @Override
-            public void onResponse(Call<com.sadak.bitcoin.model.threetextview.Profile> call, Response<com.sadak.bitcoin.model.threetextview.Profile> response) {
-              //  Log.e("respomse",response.body().getMessage());
-                List<com.sadak.bitcoin.model.threetextview.Datum> list = new ArrayList<>();
-                list = response.body().getData();
-                threetextview t = new threetextview(getContext(),list);
-                linearLayoutManagerthreetext=new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
-                threetextrecyclerview.setLayoutManager(linearLayoutManagerthreetext);
-                threetextrecyclerview.setAdapter(t);
-            }
-
-            @Override
-            public void onFailure(Call<com.sadak.bitcoin.model.threetextview.Profile> call, Throwable t) {
-
-            }
-        });
-
-        Apidata apidata2 = RetrofitInstance.getRetrofitInstance().create(Apidata.class);
-        Call<com.sadak.bitcoin.model.firstRecyclerView.Profile> call2 = apidata2.getfirstrecyclerviewdat();
-        call2.enqueue(new Callback<com.sadak.bitcoin.model.firstRecyclerView.Profile>() {
-            @Override
-            public void onResponse(Call<com.sadak.bitcoin.model.firstRecyclerView.Profile> call, Response<com.sadak.bitcoin.model.firstRecyclerView.Profile> response) {
-                //Log.e("respomse",response.body().getMessage());
-                String a = "1";
-
-                list1 = response.body().getData();
-                First_recyclerview_home first_recyclerview_home = new First_recyclerview_home(getContext(),list1,a);
-                linearLayoutManagerthreetext=new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
-                pairrecyclerview.setLayoutManager(linearLayoutManagerthreetext);
-                pairrecyclerview.setAdapter(first_recyclerview_home);
-                vpgainerloser.setAdapter(new Gainer_losser_Adapter(getFragmentManager()));
-                tablayout.setupWithViewPager(vpgainerloser);
-
-
-            }
-
-            @Override
-            public void onFailure(Call<com.sadak.bitcoin.model.firstRecyclerView.Profile> call, Throwable t) {
-
-            }
-        });
 
         txtdeposite.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -162,7 +92,6 @@ public class Home extends android.support.v4.app.Fragment{
                 click_string = "withdrawal";
                 getCoin();
 
-
             }
         });
 
@@ -170,16 +99,96 @@ public class Home extends android.support.v4.app.Fragment{
         return v;
     }
 
-    public class setFirstImage extends PagerAdapter{
+    @Override
+    public void onResume() {
+        super.onResume();
+        final Apidata apidata = RetrofitInstance.getRetrofitInstance().create(Apidata.class);
+        Call<Profile> call = apidata.getViewPagerImage();
+        call.enqueue(new Callback<Profile>() {
+            @Override
+            public void onResponse(Call<Profile> call, Response<Profile> response) {
+
+
+                List<Datum> list = new ArrayList<>();
+                list = response.body().getData();
+
+                for (int i = 0; i < list.size(); i++) {
+                    img.add(list.get(i).getThemePics());
+                }
+
+                //Log.e("img",""+img);
+                viewPager.setAdapter(new setFirstImage(getActivity(), img));
+
+                Call<com.sadak.bitcoin.model.threetextview.Profile> call1 = apidata.gettextViewdata();
+                call1.enqueue(new Callback<com.sadak.bitcoin.model.threetextview.Profile>() {
+                    @Override
+                    public void onResponse(Call<com.sadak.bitcoin.model.threetextview.Profile> call, Response<com.sadak.bitcoin.model.threetextview.Profile> response) {
+                        //  Log.e("respomse",response.body().getMessage());
+                        List<com.sadak.bitcoin.model.threetextview.Datum> list = new ArrayList<>();
+                        list = response.body().getData();
+                        threetextview t = new threetextview(getContext(), list);
+                        linearLayoutManagerthreetext = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+                        threetextrecyclerview.setLayoutManager(linearLayoutManagerthreetext);
+                        threetextrecyclerview.setAdapter(t);
+
+                        Apidata apidata2 = RetrofitInstance.getRetrofitInstance().create(Apidata.class);
+                        Call<com.sadak.bitcoin.model.firstRecyclerView.Profile> call2 = apidata2.getfirstrecyclerviewdat();
+                        call2.enqueue(new Callback<com.sadak.bitcoin.model.firstRecyclerView.Profile>() {
+                            @Override
+                            public void onResponse(Call<com.sadak.bitcoin.model.firstRecyclerView.Profile> call, Response<com.sadak.bitcoin.model.firstRecyclerView.Profile> response) {
+                                //Log.e("respomse",response.body().getMessage());
+                                String a = "1";
+
+                                list1 = response.body().getData();
+                                First_recyclerview_home first_recyclerview_home = new First_recyclerview_home(getContext(), list1, a);
+                                linearLayoutManagerthreetext = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+                                pairrecyclerview.setLayoutManager(linearLayoutManagerthreetext);
+                                pairrecyclerview.setAdapter(first_recyclerview_home);
+                                vpgainerloser.setAdapter(new Gainer_losser_Adapter(getFragmentManager()));
+                                tablayout.setupWithViewPager(vpgainerloser);
+
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<com.sadak.bitcoin.model.firstRecyclerView.Profile> call, Throwable t) {
+
+                            }
+                        });
+
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<com.sadak.bitcoin.model.threetextview.Profile> call, Throwable t) {
+
+                    }
+                });
+
+
+            }
+
+            @Override
+            public void onFailure(Call<Profile> call, Throwable t) {
+
+            }
+        });
+
+        Apidata apidata11 = RetrofitInstance.getRetrofitInstance().create(Apidata.class);
+
+
+    }
+
+    public class setFirstImage extends PagerAdapter {
 
 
         private ArrayList<String> IMAGES;
         private LayoutInflater inflater;
         private Context context;
 
-        public setFirstImage(Context context,ArrayList<String> IMAGES) {
+        public setFirstImage(Context context, ArrayList<String> IMAGES) {
             this.context = context;
-            this.IMAGES=IMAGES;
+            this.IMAGES = IMAGES;
 
 
             //java.lang.NullPointerException: Attempt to invoke virtual method 'java.lang.Object android.content.Context.getSystemService(java.lang.String)' on a null object reference
@@ -191,10 +200,9 @@ public class Home extends android.support.v4.app.Fragment{
         }
 
 
-
         @Override
         public int getCount() {
-           // Log.e("imagesize",""+IMAGES.size());
+            // Log.e("imagesize",""+IMAGES.size());
             return IMAGES.size();
 
         }
@@ -209,15 +217,14 @@ public class Home extends android.support.v4.app.Fragment{
             View imageLayout = LayoutInflater.from(context).inflate(R.layout.first_image_viewpager, view, false);
 
             assert imageLayout != null;
-             ImageView imageView = (ImageView) imageLayout
+            ImageView imageView = (ImageView) imageLayout
                     .findViewById(R.id.imageView);
 
 
+            Picasso.get().load(IMAGES.get(position)).into(imageView);
+            // Log.e("imagepath",IMAGES.get(position));
 
-                 Picasso.get().load(IMAGES.get(position)).into(imageView);
-                 // Log.e("imagepath",IMAGES.get(position));
-
-                 view.addView(imageLayout, 0);
+            view.addView(imageLayout, 0);
 
 
             return imageLayout;
@@ -226,20 +233,18 @@ public class Home extends android.support.v4.app.Fragment{
 
     }
 
-    public void getCoin()
-    {
+    public void getCoin() {
 
-        sp = getActivity().getSharedPreferences("Bitoct_user",MODE_PRIVATE);
+        sp = getActivity().getSharedPreferences("Bitoct_user", MODE_PRIVATE);
         s = sp.getString("user_id", "");
         Apidata apidata = RetrofitInstance.getRetrofitInstance().create(Apidata.class);
-        Call<com.sadak.bitcoin.model.fund.Profile> call = apidata.getFundData("api/bitoct/getBalanceCurreny?MemberId="+s);
-        Log.e("ssssssp","api/bitoct/getBalanceCurreny?MemberId="+s);
+        Call<com.sadak.bitcoin.model.fund.Profile> call = apidata.getFundData("api/bitoct/getBalanceCurreny?MemberId=" + s);
+        Log.e("ssssssp", "api/bitoct/getBalanceCurreny?MemberId=" + s);
         call.enqueue(new Callback<com.sadak.bitcoin.model.fund.Profile>() {
             @Override
             public void onResponse(Call<com.sadak.bitcoin.model.fund.Profile> call, Response<com.sadak.bitcoin.model.fund.Profile> response) {
                 listt = response.body().getData();
-                if (click_string.equals("deposite"))
-                {
+                if (click_string.equals("deposite")) {
 
 
                     Intent i = new Intent(getActivity(), Deposit.class);
@@ -248,20 +253,18 @@ public class Home extends android.support.v4.app.Fragment{
 
                 }
 
-                if (click_string.equals("withdrawal"))
-                {
+                if (click_string.equals("withdrawal")) {
                     Intent i = new Intent(getActivity(), Withdrawal.class);
                     i.putExtra("coinlist", (Serializable) listt);
                     startActivity(i);
                 }
 
 
-
             }
 
             @Override
             public void onFailure(Call<com.sadak.bitcoin.model.fund.Profile> call, Throwable t) {
-                Log.e("eeeee",""+t);
+                Log.e("eeeee", "" + t);
             }
         });
     }

@@ -53,7 +53,7 @@ Market extends Fragment {
         vp = v.findViewById(R.id.vpmarket);
         tabLayout = v.findViewById(R.id.tablayoutmarket);
         linearLayoutManager=new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
-        vp.setAdapter(new Market_viewpager_adapter(getFragmentManager()));
+        vp.setAdapter(new Market_viewpager_adapter(getChildFragmentManager()));
         tabLayout.setupWithViewPager(vp);
 
 

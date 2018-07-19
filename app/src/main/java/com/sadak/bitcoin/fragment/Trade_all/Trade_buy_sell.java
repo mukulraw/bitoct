@@ -10,6 +10,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,19 +58,28 @@ public class Trade_buy_sell extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.buy_sell_trade,container,false);
+        View v = inflater.inflate(R.layout.buy_sell_trade, container, false);
 
-        mAdapter = new MyAdapter(getActivity().getSupportFragmentManager());
+        mAdapter = new MyAdapter(getChildFragmentManager());
         mPager = v.findViewById(R.id.viewpager);
-        mPager.setPageTransformer(false , new ZoomOutTransformer());
-        mPager.setAnimation(null);
 
-       // Toast.makeText(getContext(), "qwerty", Toast.LENGTH_SHORT).show();
+        mPager.setPageTransformer(false, new ZoomOutTransformer());
+
+        // Toast.makeText(getContext(), "qwerty", Toast.LENGTH_SHORT).show();
         mPager.setAdapter(mAdapter);
+
 
         return v;
     }
-    public static class MyAdapter extends FragmentPagerAdapter {
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+
+    }
+
+    public static class MyAdapter extends FragmentStatePagerAdapter {
         public MyAdapter(FragmentManager fm) {
             super(fm);
         }
@@ -87,7 +97,7 @@ public class Trade_buy_sell extends Fragment {
                 case 1:
                     // return a different Fragment class here
                     // if you want want a completely different layout
-                    return  swipe_two.newInstance(1);
+                    return swipe_two.newInstance(1);
                 default:
                     return null;
             }

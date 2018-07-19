@@ -3,6 +3,7 @@ package com.sadak.bitcoin.adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.sadak.bitcoin.fragment.Gainer;
 import com.sadak.bitcoin.fragment.Loser;
@@ -18,7 +19,7 @@ import com.sadak.bitcoin.fragment.Market_viewpager.third_tab_market;
  * Created by USER on 25-05-2018.
  */
 
-public class Market_viewpager_adapter extends FragmentPagerAdapter {
+public class Market_viewpager_adapter extends FragmentStatePagerAdapter {
     public Market_viewpager_adapter(FragmentManager fm) {
         super(fm);
     }

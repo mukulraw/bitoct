@@ -40,6 +40,14 @@ public class  first_tab_market extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.market_main_fragment,container,false);
         recyclerView = (RecyclerView) v.findViewById(R.id.market_recyclerview);
+
+        return v;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
         Apidata apidata = RetrofitInstance.getRetrofitInstance().create(Apidata.class);
         Call<Profile> call = apidata.getMarketdata();
         call.enqueue(new Callback<Profile>() {
@@ -71,6 +79,5 @@ public class  first_tab_market extends Fragment {
         });
 
 
-        return v;
     }
 }

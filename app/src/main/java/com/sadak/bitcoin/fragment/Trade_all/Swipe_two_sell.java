@@ -7,6 +7,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,13 +35,23 @@ public class Swipe_two_sell extends Fragment {
 
         mAdapter = new MyAdapter(getActivity().getSupportFragmentManager());
         mPager = v.findViewById(R.id.viewpagersell);
-        mPager.setPageTransformer(false , new ZoomOutTransformer());
+
+
+        mPager.setPageTransformer(false, new ZoomOutTransformer());
         mPager.setAdapter(mAdapter);
+
 
         return v;
     }
 
-    public static class MyAdapter extends FragmentPagerAdapter {
+    @Override
+    public void onResume() {
+        super.onResume();
+
+
+    }
+
+    public static class MyAdapter extends FragmentStatePagerAdapter {
         public MyAdapter(FragmentManager fm) {
             super(fm);
         }

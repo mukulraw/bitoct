@@ -21,7 +21,6 @@ public class Trade_adapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         if (position==0)
         {
-
             return new Trade_buy_sell();
         }
         else if (position==1)
