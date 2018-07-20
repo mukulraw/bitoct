@@ -1,20 +1,37 @@
 package com.sadak.bitcoin.Activity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sadak.bitcoin.NetworkConnection.Apidata;
+import com.sadak.bitcoin.NetworkConnection.RetrofitInstance;
 import com.sadak.bitcoin.R;
+import com.sadak.bitcoin.adapter.Trade.Recycler_Sell_Order;
+import com.sadak.bitcoin.fragment.swipe_two;
 import com.sadak.bitcoin.lineChartPOJO.lineChartBean;
+import com.sadak.bitcoin.model.Sellorder.Example;
 import com.sadak.bitcoin.model.market.Datum;
 
 import org.eazegraph.lib.charts.BarChart;
@@ -36,6 +53,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
+import static java.security.AccessController.getContext;
+
 public class MarketGraph extends AppCompatActivity {
 
 
@@ -53,7 +72,12 @@ public class MarketGraph extends AppCompatActivity {
     List<String> ttime;
     List<String> millis;
 
+    ImageButton back;
+
     String marketId;
+
+    TabLayout tabs;
+    ViewPager pager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +126,9 @@ public class MarketGraph extends AppCompatActivity {
         vol = (TextView) findViewById(R.id.vol);
         highvol = (TextView) findViewById(R.id.highvol);
         spinner = findViewById(R.id.spinner);
+        back = findViewById(R.id.back);
+        tabs = findViewById(R.id.tabs);
+        pager = findViewById(R.id.viewpager);
 
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(MarketGraph.this, R.layout.spinner_item_layout, ttime);
@@ -111,6 +138,22 @@ public class MarketGraph extends AppCompatActivity {
 
         valueLineChart = findViewById(R.id.chart);
         barChart = findViewById(R.id.bar);
+
+
+
+        tabs.addTab(tabs.newTab().setText("Order Book"));
+        tabs.addTab(tabs.newTab().setText("Market Trade"));
+
+
+        PagerAdapter adapter1 = new PagerAdapter(getSupportFragmentManager());
+
+
+        pager.setAdapter(adapter1);
+
+        tabs.setupWithViewPager(pager);
+
+        tabs.getTabAt(0).setText("Order Book");
+        tabs.getTabAt(1).setText("Market Trade");
 
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -311,6 +354,135 @@ public class MarketGraph extends AppCompatActivity {
             buy = (Button) findViewById(R.id.buy);
             sell = (Button) findViewById(R.id.sell);
         }
+
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
     }
+
+    class PagerAdapter extends FragmentStatePagerAdapter
+    {
+
+        public PagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            if (position == 0)
+            {
+                return new OrderBook();
+            }
+            else
+            {
+                return swipe_two.newInstance(1);
+            }
+        }
+
+        @Override
+        public int getCount() {
+            return 2;
+        }
+    }
+
+
+    public static class OrderBook extends Fragment
+    {
+
+
+        RecyclerView recyclersellorder,recyclerviewbuyorder;
+        LinearLayoutManager llsellorder;
+        List<com.sadak.bitcoin.model.Sellorder.Datum> listsellorder = new ArrayList<>();
+        String urlSellOrderBymarhet ;
+        String urlBuyOrderBymarhet ;
+        SharedPreferences sharedPreferences,sharedPreferencesrecyclerorder;
+
+        @Nullable
+        @Override
+        public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+            View view = inflater.inflate(R.layout.order_book_layout , container , false);
+
+
+            sharedPreferences = getContext().getSharedPreferences("Bitoct_user", Context.MODE_PRIVATE);
+            sharedPreferencesrecyclerorder = getContext().getSharedPreferences("Tosettradetext", Context.MODE_PRIVATE);
+
+            recyclersellorder = (RecyclerView) view.findViewById(R.id.recyclersellorder);
+            recyclerviewbuyorder = (RecyclerView) view.findViewById(R.id.recyclerviewbuyorder);
+            urlSellOrderBymarhet = "api/bitoct/getSellOrdersByMarketID?marketid=3";
+            urlBuyOrderBymarhet = "api/bitoct/getBuyOrdersByMarketID?marketid=3";
+
+
+            getselloreder();
+            getbuyorder();
+
+
+            return view;
+        }
+
+        public void getselloreder()
+        {
+            Apidata apidata1 = RetrofitInstance.getRetrofitInstance().create(Apidata.class);
+            Call<Example> call1 = apidata1.getSellOrder(urlSellOrderBymarhet);
+            call1.enqueue(new Callback<Example>() {
+                @Override
+                public void onResponse(Call<Example> call, Response<Example> response) {
+                    //Log.e("qwwwww",""+response.body().getData());
+
+                    listsellorder = response.body().getData();
+
+                    SharedPreferences.Editor editor = sharedPreferencesrecyclerorder.edit();
+                    editor.putString("tosettext","buy");
+                    editor.commit();
+                    Recycler_Sell_Order recycler_sell_order = new Recycler_Sell_Order(getContext(), listsellorder);
+                    llsellorder = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+                    recyclersellorder.setLayoutManager(llsellorder);
+                    recyclersellorder.setAdapter(recycler_sell_order);
+
+                }
+
+                @Override
+                public void onFailure(Call<Example> call, Throwable t) {
+
+                }
+            });
+        }
+
+        public void getbuyorder()
+        {
+            Apidata apidata3 = RetrofitInstance.getRetrofitInstance().create(Apidata.class);
+            Call<Example> call3 = apidata3.getBuyOrder(urlBuyOrderBymarhet);
+            call3.enqueue(new Callback<Example>() {
+                @Override
+                public void onResponse(Call<Example> call, Response<Example> response) {
+                    Log.e("1234",""+response.body().getData());
+                    listsellorder = response.body().getData();
+                    Recycler_Sell_Order recycler_sell_order = new Recycler_Sell_Order(getContext(), listsellorder);
+                    llsellorder = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+                    recyclerviewbuyorder.setLayoutManager(llsellorder);
+                    recyclerviewbuyorder.setAdapter(recycler_sell_order);
+
+                }
+
+                @Override
+                public void onFailure(Call<Example> call, Throwable t) {
+
+                }
+            });
+        }
+
+
+    }
+
+
+
+
+
+
+
 }
 
