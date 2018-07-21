@@ -49,6 +49,11 @@ public class First_recyclerview_home extends RecyclerView.Adapter<First_recycler
         this.a = aa;
     }
 
+    public void setGridData(List<Datum> list)
+    {
+        this.list = list;
+        notifyDataSetChanged();
+    }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

@@ -57,7 +57,7 @@ public class Home extends Fragment {
     String s;
     List<com.sadak.bitcoin.model.fund.Datum> listt = new ArrayList<>();
     String click_string = "";
-
+    First_recyclerview_home first_recyclerview_home;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -96,6 +96,12 @@ public class Home extends Fragment {
         });
 
 
+        first_recyclerview_home = new First_recyclerview_home(getContext(), list1, a);
+        linearLayoutManagerthreetext = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        pairrecyclerview.setLayoutManager(linearLayoutManagerthreetext);
+        pairrecyclerview.setAdapter(first_recyclerview_home);
+
+
         return v;
     }
 
@@ -131,6 +137,8 @@ public class Home extends Fragment {
                         threetextrecyclerview.setLayoutManager(linearLayoutManagerthreetext);
                         threetextrecyclerview.setAdapter(t);
 
+                        list1.clear();
+
                         Apidata apidata2 = RetrofitInstance.getRetrofitInstance().create(Apidata.class);
                         Call<com.sadak.bitcoin.model.firstRecyclerView.Profile> call2 = apidata2.getfirstrecyclerviewdat();
                         call2.enqueue(new Callback<com.sadak.bitcoin.model.firstRecyclerView.Profile>() {
@@ -140,11 +148,10 @@ public class Home extends Fragment {
                                 String a = "1";
 
                                 list1 = response.body().getData();
-                                First_recyclerview_home first_recyclerview_home = new First_recyclerview_home(getContext(), list1, a);
-                                linearLayoutManagerthreetext = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-                                pairrecyclerview.setLayoutManager(linearLayoutManagerthreetext);
-                                pairrecyclerview.setAdapter(first_recyclerview_home);
-                                vpgainerloser.setAdapter(new Gainer_losser_Adapter(getFragmentManager()));
+
+                                first_recyclerview_home.setGridData(response.body().getData());
+
+                                vpgainerloser.setAdapter(new Gainer_losser_Adapter(getChildFragmentManager()));
                                 tablayout.setupWithViewPager(vpgainerloser);
 
 
